@@ -1,16 +1,12 @@
-version: '3'
+version: '3',
 services:
   db:
-    image: postgres:11.4-alpine
-    container_name: postgres
-    ports:
-      - 5432:5432
-    volumes:
-      - ./pg_data:/var/lib/postgresql/data/pgdata
-    environment:
+    image: postgres
+    environment: 
       POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
       POSTGRES_DB: tasks
-      PGDATA: /var/lib/postgresql/data/pgdata
-    restart: always
-  app:
-    command: npm start
+    volumes: 
+      - ./pgdata:/var/lib/postgresql/data
+    ports: 
+      - '5432:5432'
